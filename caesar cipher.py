@@ -10,7 +10,12 @@ def encrypt(plain_text: str) -> str:
     """
     cipher_text = ""
     for char in plain_text:
-        cipher_text += chr(ord(char) + 3)
+        if char.isalpha():
+            shift = 3
+            base = ord('A') if char.isupper() else ord('a')
+            cipher_text += chr((ord(char) - base + shift) % 26 + base)
+        else:
+            cipher_text += char
     return cipher_text
 
 def decrypt(cipher_text: str) -> str:
@@ -23,9 +28,15 @@ def decrypt(cipher_text: str) -> str:
     """
     plain_text = ""
     for char in cipher_text:
-        plain_text += chr(ord(char) - 3)
+        if char.isalpha():
+            shift = -3
+            base = ord('A') if char.isupper() else ord('a')
+            plain_text += chr((ord(char) - base + shift) % 26 + base)
+        else:
+            plain_text += char
     return plain_text
 
+print("Welcome to CAESAR CIPHER ENCRYPTION DECRYPTION program")
 while True:
     user = input(("Enter e to encrypt message\nEnter d to decrypt message\nAnyother key to exit: "))
     if user.lower() == 'e':
