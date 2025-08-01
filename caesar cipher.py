@@ -1,50 +1,38 @@
 # The Caesar cipher is a simple encryption technique that was used by Julius Caesar to send secret messages to his allies.
 
-def encrypt(plain_text: str) -> str:
-    """Finds cipher text from plain text.
+def shift_text(operation: str, text: str) -> str:
+    """ Finds shifted text from given text
 
     Args:
-        plain_text (str): An English message in human understandable language.
+        Operation: Operation to perform selected by user (e: encrypt/d: decrypt)
+        text: An English message given by user.
+    
     Returns:
-        cipher_text (str): An English message in human non-understandable language.
+        new_text: An English message on which operation is performed
     """
-    cipher_text = ""
-    for char in plain_text:
-        if char.isalpha():
-            shift = 3
-            base = ord('A') if char.isupper() else ord('a')
-            cipher_text += chr((ord(char) - base + shift) % 26 + base)
-        else:
-            cipher_text += char
-    return cipher_text
-
-def decrypt(cipher_text: str) -> str:
-    """Finds plain text from cipher text.
-
-    Args:
-        cipher_text (str): An English message in human non-understandable language.
-    Returns:
-        plain_text (str): An English message in human understandable language.
-    """
-    plain_text = ""
-    for char in cipher_text:
-        if char.isalpha():
-            shift = -3
-            base = ord('A') if char.isupper() else ord('a')
-            plain_text += chr((ord(char) - base + shift) % 26 + base)
-        else:
-            plain_text += char
-    return plain_text
-
-print("Welcome to CAESAR CIPHER ENCRYPTION DECRYPTION program")
-while True:
-    user = input(("Enter e to encrypt message\nEnter d to decrypt message\nAnyother key to exit: "))
-    if user.lower() == 'e':
-        plain_text = input("Enter the message you want to encrypt: ")
-        print(encrypt(plain_text), end="\n\n")
-    elif user.lower() == 'd':
-        cipher_text = input("Enter the message you want to decrypt: ")
-        print(decrypt(cipher_text), end="\n\n")
+    new_text = ""
+    if operation == 'e':
+        shift = 3
     else:
-        print("Exit")
+        shift = -3
+    for char in text:
+        if char.isalpha():
+            base = ord('A') if char.isupper() else ord('a')
+            new_text += chr((ord(char)- base + shift) % 26 + base)
+        else:
+            new_text += char
+    return new_text
+
+print("\nWelcome to CAESAR CIPHER ENCRYPTION DECRYPTION program\n")
+while True:
+    user = input(("Enter e to encrypt, d to decrypt, or any other key to exit: "))
+    if user.lower() == 'e':
+        text = input("Enter the message you want to encrypt: ")
+        print(shift_text(user, text), end="\n\n")
+    elif user.lower() == 'd':
+        operation = "decrypt"
+        text = input("Enter the message you want to decrypt: ")
+        print(shift_text(user, text), end="\n\n")
+    else:
+        print("\nprogram Exited")
         break
