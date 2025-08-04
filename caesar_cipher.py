@@ -23,16 +23,24 @@ def shift_text(operation: str, text: str) -> str:
             new_text += char
     return new_text
 
-print("\nWelcome to CAESAR CIPHER ENCRYPTION DECRYPTION program\n")
-while True:
-    user = input(("Enter e to encrypt, d to decrypt, or any other key to exit: "))
-    if user.lower() == 'e':
-        text = input("Enter the message you want to encrypt: ")
-        print(shift_text(user, text), end="\n\n")
-    elif user.lower() == 'd':
-        operation = "decrypt"
-        text = input("Enter the message you want to decrypt: ")
-        print(shift_text(user, text), end="\n\n")
-    else:
-        print("\nprogram Exited")
-        break
+def user_choice():
+    """
+    Function to ask for user choices whther to perform encryption, decryption or exit the program.
+    """
+    while True:
+        user = input(("Enter e to encrypt, d to decrypt, or any other key to exit: "))
+        if user.lower() == 'e':
+            text = input("Enter the message you want to encrypt: ")
+            print(shift_text(user, text), end="\n\n")
+        elif user.lower() == 'd':
+            operation = "decrypt"
+            text = input("Enter the message you want to decrypt: ")
+            print(shift_text(user, text), end="\n\n")
+        else:
+            print("Program Exited.")
+            break
+
+
+if __name__ == "__main__":
+    print("\nWelcome to CAESAR CIPHER ENCRYPTION DECRYPTION program\n")
+    user_choice()
