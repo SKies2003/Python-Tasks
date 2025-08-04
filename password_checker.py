@@ -50,9 +50,8 @@ def check_password(password: str) -> str:
         return f"VALID PASSWORD! {strength(password)}"
     return "INVALID PASSWORD!"
 
-if __name__ == "__main__":
-    print(
-        """
+def instructions():
+    return """
         Welcome to PASSWORD CHECKER program
 
         Instructions for being a VALID password:
@@ -62,10 +61,8 @@ if __name__ == "__main__":
         4. Special characters are allowed.
         5. Length of password must be greater than or equal to 6.
     """
-    )
+
+if __name__ == "__main__":
+    print(instructions())
     user = input("Enter a password to check: ")
     print(check_password(user))
-
-
-# Use caesar cipher file and convert them into secured ones.
-# Save these passwords in a json file/db
