@@ -1,3 +1,6 @@
 __pycache__/
 db_credentials.py
 password_saver.py
+*.spec
+/build/
+/dist/
